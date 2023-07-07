@@ -2,6 +2,7 @@ name: Build Vue
 on: [push]
 jobs:
   build_vue:
+    if: github.repository_owner == 'RPCSX'
     runs-on: ubuntu-latest
     name: Build Vue
     steps:
