@@ -14,4 +14,4 @@ export default defineConfig({
     }
   },
   base: '/rpcsx-site/'
-})
+});
