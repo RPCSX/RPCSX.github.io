@@ -3,7 +3,7 @@
 The code behind the homepage for the RPCSX project.
 
 ## Contributing
-see [CONTRIBUTING.md](https://github.com/OCDkirby/rpcsx-site/blob/main/CONTRIBUTING.md)
+see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Recommended IDE Setup
 
