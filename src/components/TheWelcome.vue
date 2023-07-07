@@ -1,27 +1,26 @@
 <script setup>
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+  import FeatureListItem from './FeatureListItem.vue'
 </script>
 
 <template>
-  <WelcomeItem>
+  <FeatureListItem>
     <template #icon>
-      <DocumentationIcon />
+      <n-icon size="30">
+        <book />
+      </n-icon>
     </template>
     <template #heading>Documentation</template>
 
     Vue’s
     <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
     provides you with all information you need to get started.
-  </WelcomeItem>
+  </FeatureListItem>
 
-  <WelcomeItem>
+  <FeatureListItem>
     <template #icon>
-      <ToolingIcon />
+      <n-icon size="30">
+        <tool-box />
+      </n-icon>
     </template>
     <template #heading>Tooling</template>
 
@@ -37,11 +36,13 @@ import SupportIcon from './icons/IconSupport.vue'
     <br />
 
     More instructions are available in <code>README.md</code>.
-  </WelcomeItem>
+  </FeatureListItem>
 
-  <WelcomeItem>
+  <FeatureListItem>
     <template #icon>
-      <EcosystemIcon />
+      <n-icon size="30">
+        <category />
+      </n-icon>
     </template>
     <template #heading>Ecosystem</template>
 
@@ -53,11 +54,13 @@ import SupportIcon from './icons/IconSupport.vue'
     you need more resources, we suggest paying
     <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
     a visit.
-  </WelcomeItem>
+  </FeatureListItem>
 
-  <WelcomeItem>
+  <FeatureListItem>
     <template #icon>
-      <CommunityIcon />
+      <n-icon size="30">
+        <chat />
+      </n-icon>
     </template>
     <template #heading>Community</template>
 
@@ -71,16 +74,22 @@ import SupportIcon from './icons/IconSupport.vue'
     the official
     <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
     twitter account for latest news in the Vue world.
-  </WelcomeItem>
+  </FeatureListItem>
 
-  <WelcomeItem>
+  <FeatureListItem>
     <template #icon>
-      <SupportIcon />
+      <n-icon size="30">
+        <currency-dollar />
+      </n-icon>
     </template>
     <template #heading>Support Vue</template>
 
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  </FeatureListItem>
 </template>
+
+<script>
+  import { Book, ToolBox, CurrencyDollar, Chat, Category } from "@vicons/carbon";
+</script>
