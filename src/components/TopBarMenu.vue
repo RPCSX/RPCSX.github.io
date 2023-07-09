@@ -73,7 +73,16 @@ import { NIcon } from 'naive-ui'
       ]
     },
     {
-      label: 'discuss',
+      label: () => 
+        h(
+          'a',
+          {
+            href: 'https://discord.com/invite/mx8FbxN5',
+            target: '_blank',
+            rel: 'noopenner noreferrer'
+          },
+          'discuss'
+        ),
       key: 'discuss',
       icon: renderIcon(DiscordIcon)
     }

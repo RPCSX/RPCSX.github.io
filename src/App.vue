@@ -119,9 +119,6 @@
 
   import './assets/logo-light.png';
 
-
-  document.title = 'RPCSX - PS4 Emulator';
-
   /**
    * @type import('naive-ui').GlobalThemeOverrides
    */
