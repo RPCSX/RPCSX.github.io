@@ -1,0 +1,10 @@
+.body-text {
+    font-family: v-sans;
+    font-size: 14pt;
+  }
+  
+  h1 {
+    font-family: v-sans;
+    font-size: 30pt;
+    font-weight: bold;
+  }
