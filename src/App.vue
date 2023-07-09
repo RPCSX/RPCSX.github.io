@@ -15,15 +15,17 @@
             </div>
           
             <div class="column-content">
-              <p class="body-text">
-                <n-card hoverable title="RPCSX is your PlayStation 4 emulator.">
+                <n-card hoverable>
                   <template #cover>
                     <img :src="getCoverURI()">
                   </template>
-                  Use only with lawfully obtained archival copies of PS4 games you physically own.
+                  <template #header>
+                    <div class="card-header">RPCSX is your PlayStation 4 emulator.</div>
+                  </template>
+                  <div class="body-text">Use only with lawfully obtained archival copies of PS4 games you physically own.</div>
                 </n-card>
 
-              </p>
+                <n-divider />
             </div>
           </div>
           <div id="right-column" class="column">
@@ -54,7 +56,7 @@
 .columns {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: stretch;
 }
 
