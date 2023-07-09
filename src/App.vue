@@ -145,10 +145,10 @@
   var today = new Date();
   const months = (today.getFullYear() - repoCreation.getFullYear()) * 12 - repoCreation.getMonth() + today.getMonth() + 1; // Months between creation and today
 
-  var contributors;
-  const response = await fetch("https://cors-anywhere.herokuapp.com/https://github.com/RPCSX/rpcsx/");
-  contributors = await cheerio.load(response.text())('.Counter m1-1');
-  console.log("hi");
+  var contributors = null; // TODO web scraping
+  // const response = await fetch("https://cors-anywhere.herokuapp.com/https://github.com/RPCSX/rpcsx/");
+  // contributors = await cheerio.load(response.text())('.Counter m1-1');
+  // console.log("hi");
 
   var theme = null;
 
