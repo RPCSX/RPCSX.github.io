@@ -3,9 +3,7 @@
                      :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
     <main>
       <div class="wrapper">
-        <div class="top-bar-wrapper">
-          <TopBarMenu @toggle-darkmode="toggleTheme()"/>
-        </div>
+        <TopBarMenu @toggle-darkmode="toggleTheme()"/>
         <div class="columns">
           <div id="main-column" class="column">
             <div class="top-main">
@@ -51,11 +49,6 @@
   display: flex;  /* enables flex content for its children */
   box-sizing: border-box;
   flex-direction: column;
-}
-
-.top-bar-wrapper {
-  display: flex;
-  justify-content: center;
 }
 
 .columns {
@@ -124,6 +117,9 @@
 
   import './assets/logo-light.png';
 
+
+  document.title = 'RPCSX - PS4 Emulator';
+
   /**
    * @type import('naive-ui').GlobalThemeOverrides
    */
@@ -154,6 +150,7 @@
 
 
   export default defineComponent({
+    title: 'RPCSX - PS4 Emulator',
     methods: {
       // A hacky workaround to testing mobile
       toggleTheme() {

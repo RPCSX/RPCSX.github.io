@@ -1,6 +1,15 @@
+<script setup lang="ts">
+import { NIcon } from 'naive-ui'
+  import {
+    Code as CodeIcon,
+    Book as BookIcon,
+    LogoDiscord as DiscordIcon,
+    Moon as MoonIcon, Sun as SunIcon
+  } from '@vicons/carbon';
+</script>
+
 <template>
-  <div class="wrapper">
-    <darkModeButtonIcon/>
+  <div class="bar-wrapper">
     <n-button
     quaternary
     tag="a"
@@ -8,10 +17,10 @@
       <img alt="Vue logo" class="logo" :src="getCoverURI()" width="32" height="32" />
     </n-button>
     <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
-    <n-button tertiary @click="toggleTheme()">
+    <n-button circle @click="toggleTheme()" class="dark-mode-button">
       <template #icon>
         <n-icon>
-          <Moon />
+          <MoonIcon />
         </n-icon>
       </template>
     </n-button>
@@ -19,20 +28,20 @@
 </template>
 
 <style scoped>
-.wrapper {
+.bar-wrapper {
   display: inline-block;
+  flex-flow: row nowrap;
+  text-align: center;
   margin: 8px;
 }
+
+.dark-mode-button {
+  padding-left: 5px;
+}
+
 </style>
   
 <script lang="ts">
-  import { NIcon } from 'naive-ui'
-  import {
-    Code as CodeIcon,
-    Book as BookIcon,
-    LogoDiscord as DiscordIcon,
-    Moon, Sun
-  } from '@vicons/carbon'
   
   function renderIcon (icon: Component) {
     return () => h(NIcon, null, { default: () => h(icon) })
