@@ -4,7 +4,7 @@
  * The component library is Naive UI.
  * 
  * Important notes: 
- * The project automatically imports vue and naive-ui code as you go, which saves significant space in your script blocks. Just make sure to export your components.
+ * The project automatically imports *most* vue and naive-ui code as you go, which saves significant space in your script blocks. Just make sure to export your components.
  * However, the icon library does not have an auto-importer, so your script blocks will need to import those.
  */
 
@@ -44,5 +44,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: '/rpcsx-site/'
+  base: '/rpcsx-site/',
 });
