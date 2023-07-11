@@ -110,9 +110,6 @@
 <script>
   import { darkTheme } from 'naive-ui'
   import { ref } from 'vue';
-  import axios, * as others from 'axios';
-  import * as cheerio from 'cheerio';
-  import { LogoGithub }  from '@vicons/carbon';
 
   import 'vfonts/FiraSans.css';
   import './assets/text-styles.css';
