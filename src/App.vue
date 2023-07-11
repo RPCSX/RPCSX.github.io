@@ -1,30 +1,64 @@
+<script setup lang="ts">
+import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
+</script>
+
 <template>
   <n-config-provider :theme="theme"
                      :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
     <main>
       <div class="wrapper">
-        <TopBarMenu @toggle-darkmode="toggleTheme()"/>
+        <TopBarMenu :toggleTheme="toggleTheme" :themex="theme"/>
         <div class="columns">
           <div id="main-column" class="column">
             <div class="top-main">
-              <div class="hook">
-                <h1>{{ months }} {{ months == 1 ? "month" : "months" }} of development.</h1>
-                <h1> {{ contributors }} experienced contributors.</h1>
-                <h1>0 days since someone asked for Bloodborne.</h1>
-              </div>
+              <Hook :time="getTime()" :contributors="contributors" />
             </div>
           
             <div class="column-content">
-                <n-card hoverable>
-                  <template #cover>
-                    <img :src="getCoverURI()">
+                <MainCard :themex="theme" />
+                <ContentCard>
+                  <template #card-icon>
+                    <PedestrianFamily />
                   </template>
-                  <template #header>
-                    <div class="card-header">RPCSX is your PlayStation 4 emulator.</div>
+                  <template #card-title>
+                    Huge community.
                   </template>
-                  <div class="body-text">Use only with lawfully obtained archival copies of PS4 games you physically own.</div>
-                </n-card>
-
+                  Everyone is here! The spirit of RPCS3 lives on.
+                </ContentCard>
+                <ContentCard>
+                  <template #card-icon>
+                    <ToolBox />
+                  </template>
+                  <template #card-title>
+                    Ongoing development.
+                  </template>
+                  Est. 2016 by DH himself.
+                </ContentCard>
+                <ContentCard>
+                  <template #card-icon>
+                    <GameConsole />
+                  </template>
+                  <template #card-title>
+                    All your favorite titles.
+                  </template>
+                  <div class="joke-wrapper">
+                    <div class="body-text">
+                      Bloodborne coming Soon™*
+                    </div>
+                    <div class="joke-footnote">
+                      * RPCSX does not provide estimates or compatibility for any title.
+                    </div>
+                  </div>
+                </ContentCard>
+                <ContentCard>
+                  <template #card-icon>
+                    <Linux />
+                  </template>
+                  <template #card-title>
+                    Currently Linux only.
+                  </template>
+                  WSL on Windows is being discussed.
+                </ContentCard>
                 <n-divider />
             </div>
           </div>
@@ -70,19 +104,17 @@
 .column-content {
   display: flex;
   flex-flow: column nowrap;
-  gap: 8px;
+  align-items: center;
+  gap: 16px;
 }
 
 #main-column {
-    flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */
+    /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */ /* [OCDkirby: so that was a fucking lie.] */
+    flex-shrink: 1;
     flex-grow: 4;
     align-self: center;
     align-items: center;
     gap: 16px;
-}
-
-.n-card {
-  max-width: 300px;
 }
 
 #right-column {
@@ -105,16 +137,29 @@
     display: flex;
     
 }
+
+.joke-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  flex-shrink: 1;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.joke-footnote {
+  align-self: flex-end;
+  font-size: 8pt;
+  word-wrap: break-word;
+}
 </style>
 
-<script>
+<script lang="ts">
   import { darkTheme } from 'naive-ui'
   import { ref } from 'vue';
 
   import 'vfonts/FiraSans.css';
   import './assets/text-styles.css';
-
-  import './assets/logo-light.png';
 
   /**
    * @type import('naive-ui').GlobalThemeOverrides
@@ -133,16 +178,14 @@
     // ...
   };
 
-  var repoCreation = new Date(2023, 6, 18);
-  var today = new Date();
-  const months = (today.getFullYear() - repoCreation.getFullYear()) * 12 - repoCreation.getMonth() + today.getMonth() + 1; // Months between creation and today
-
-  var contributors = null; // TODO web scraping
+  var contributors = 10; // TODO web scraping
   // const response = await fetch("https://cors-anywhere.herokuapp.com/https://github.com/RPCSX/rpcsx/");
   // contributors = await cheerio.load(response.text())('.Counter m1-1');
   // console.log("hi");
 
-  var theme = null;
+  var theme;
+
+  var coverURI;
 
 
   export default defineComponent({
@@ -156,8 +199,14 @@
       openGithub() {
         window.open('https://github.com/RPCSX/rpcsx', '_blank');
       },
-      getCoverURI() {
-        return theme === null ? './assets/logo-light.png' : './assets/logo-dark.png';
+      getTime() {
+        const divmod = (x, y) => [Math.floor(x / y), x % y]; // Utility
+
+        var developmentStart = new Date(2016, 6, 18); // Rough estimate of when DH left RPCS3
+        var today = new Date();
+        const months = (today.getFullYear() - developmentStart.getFullYear()) * 12 - developmentStart.getMonth() + today.getMonth() + 1; // Months between start and today
+        var time_result = divmod(months, 12); // [years, partial year's months]
+        return months > 12 ? (time_result[0] + Math.round(time_result[1] / 12 * 10)/10) + " years" : months + "months";
       }
     },
     setup() {
@@ -166,9 +215,9 @@
         theme: ref(null),
         lightThemeOverrides,
         darkThemeOverrides,
-        months,
         contributors
       }
     }
   })
 </script>
+

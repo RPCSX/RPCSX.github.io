@@ -5,7 +5,22 @@ import { NIcon } from 'naive-ui'
     Book as BookIcon,
     LogoDiscord as DiscordIcon,
     Moon as MoonIcon, Sun as SunIcon
-  } from '@vicons/carbon';
+  } from '@vicons/carbon'
+
+  defineProps({
+    toggleTheme: {
+      type: Function,
+      required: true
+    },
+    coverImage: {
+      type: ref,
+      required: true
+    },
+    themex: {
+      type: ref,
+      required: true
+    },
+  })
 </script>
 
 <template>
@@ -14,7 +29,7 @@ import { NIcon } from 'naive-ui'
     quaternary
     tag="a"
     href="https://rpcsx.github.io/rpcsx-site/">
-      <img alt="Vue logo" class="logo" :src="getCoverURI()" width="32" height="32" />
+      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'" width="32" height="32" />
     </n-button>
     <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
     <n-button circle @click="toggleTheme()" class="dark-mode-button">
