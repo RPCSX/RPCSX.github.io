@@ -13,5 +13,8 @@
     "forceConsistentCasingInFileNames": true,
     "allowUnreachableCode": false,
     "allowJs": false
-  }
+  },
+  "references": [
+    { "path": "../rpcsx-site"}
+  ]
 }

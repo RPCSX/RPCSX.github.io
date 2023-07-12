@@ -23,7 +23,7 @@ const props = defineProps({
   },
 })
 
-function renderIcon (icon: Component) {
+function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
@@ -36,54 +36,52 @@ function toggleTheme() {
 var activeKey: any = null;
 
 const menuOptions: MenuOption[] = [
-    {
-      label: () =>
-        h(
-          'a',
-          {
-            href: 'https://github.com/RPCSX/rpcsx',
-            target: '_blank',
-            rel: 'noopenner noreferrer'
-          },
-          'development'
-        ),
-      key: 'development',
-      icon: renderIcon(CodeIcon)
-    },
-    {
-      label: 'wiki',
-      key: 'wiki',
-      icon: renderIcon(BookIcon),
-      children: [
+  {
+    label: () =>
+      h(
+        'a',
         {
-          // TODO: populate
-        }
-      ]
-    },
-    {
-      label: () => 
-        h(
-          'a',
-          {
-            href: 'https://discord.com/invite/mx8FbxN5',
-            target: '_blank',
-            rel: 'noopenner noreferrer'
-          },
-          'discuss'
-        ),
-      key: 'discuss',
-      icon: renderIcon(DiscordIcon)
-    }
-  ]
+          href: 'https://github.com/RPCSX/rpcsx',
+          target: '_blank',
+          rel: 'noopenner noreferrer'
+        },
+        'development'
+      ),
+    key: 'development',
+    icon: renderIcon(CodeIcon)
+  },
+  {
+    label: 'wiki',
+    key: 'wiki',
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        // TODO: populate
+      }
+    ]
+  },
+  {
+    label: () =>
+      h(
+        'a',
+        {
+          href: 'https://discord.com/invite/mx8FbxN5',
+          target: '_blank',
+          rel: 'noopenner noreferrer'
+        },
+        'discuss'
+      ),
+    key: 'discuss',
+    icon: renderIcon(DiscordIcon)
+  }
+]
 </script>
 
 <template>
   <div class="bar-wrapper">
-    <n-button
-    quaternary
-    tag="a"
-    href="https://rpcsx.github.io/rpcsx-site/">
-      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'" width="32" height="32" />
+    <n-button quaternary tag="a" href="https://rpcsx.github.io/rpcsx-site/">
+      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'"
+        width="32" height="32" />
     </n-button>
     <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
     <n-button circle @click="toggleTheme()" class="dark-mode-button">

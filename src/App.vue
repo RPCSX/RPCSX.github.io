@@ -34,7 +34,6 @@ function toggleTheme() {
   theme = theme == null ? darkTheme : null;
   console.log(theme);
 }
-
 </script>
 
 <template>

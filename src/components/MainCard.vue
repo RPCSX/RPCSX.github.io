@@ -11,7 +11,7 @@
 </template>
 
 <style scoped>
-    .n-card {
-        max-width: 300px;
-    }
+.n-card {
+  max-width: 300px;
+}
 </style>
