@@ -13,9 +13,13 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "@vicons/carbon": "^0.12.0",
     "@vitejs/plugin-vue": "^4.2.3",
+    "eslint": "^8.44.0",
     "naive-ui": "^2.34.4",
+    "typescript": "^5.1.6",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
     "vfonts": "^0.0.3",
