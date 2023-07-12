@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "isolatedModules": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "strict": true,
+    "noImplicitThis": true,
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "forceConsistentCasingInFileNames": true
+  }
+}

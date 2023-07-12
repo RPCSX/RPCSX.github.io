@@ -28,15 +28,12 @@ function renderIcon (icon: Component) {
 }
 
 function toggleTheme() {
-  this.darkModeButtonIcon = this.darkModeButtonIcon == MoonIcon ? SunIcon : MoonIcon;
-  this.$emit('toggle-darkmode');
+  // this.darkModeButtonIcon = this.darkModeButtonIcon == MoonIcon ? SunIcon : MoonIcon;
+  // this.$emit('toggle-darkmode');
+  console.log("Toggle theme");
 }
 
-function getCoverURI() {
-  return this.$parent.theme === null ? './assets/logo-light.png' : './assets/logo-dark.png';
-}
-
-var activeKey = null;
+var activeKey: any = null;
 
 const menuOptions: MenuOption[] = [
     {

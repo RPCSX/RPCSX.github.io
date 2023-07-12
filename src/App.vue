@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
-import { darkTheme } from 'naive-ui'
-import { ref } from 'vue';
+import { GlobalTheme, darkTheme } from 'naive-ui'
 
 import 'vfonts/FiraSans.css';
 import './assets/text-styles.css';
@@ -9,7 +7,7 @@ import './assets/text-styles.css';
 /**
  * @type import('naive-ui').GlobalThemeOverrides
  */
-  const lightThemeOverrides = {
+const lightThemeOverrides = {
   common: {
     primaryColor: '#000000'
   }
@@ -23,74 +21,34 @@ const darkThemeOverrides = {
   // ...
 };
 
+var contributors = 10; // TODO web scraping
+// const response = await fetch("https://cors-anywhere.herokuapp.com/https://github.com/RPCSX/rpcsx/");
+// contributors = await cheerio.load(response.text())('.Counter m1-1');
+// console.log("hi");
+
+var theme: GlobalTheme | null;
+var coverURI;
+
 function toggleTheme() {
   theme = theme == null ? darkTheme : null;
   console.log(theme);
 }
 
-var theme;
-var coverURI;
-
 </script>
 
 <template>
-  <n-config-provider :theme="theme"
-                     :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
+  <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
     <main>
       <div class="wrapper">
-        <TopBarMenu :toggleTheme="toggleTheme" :themex="theme"/>
+        <TopBarMenu :toggleTheme="toggleTheme" :themex="theme" />
         <div class="columns">
           <div id="main-column" class="column">
             <div class="top-main">
               <Hook />
             </div>
-          
+
             <div class="column-content">
-                <MainCard :themex="theme" />
-                <ContentCard>
-                  <template #card-icon>
-                    <PedestrianFamily />
-                  </template>
-                  <template #card-title>
-                    Huge community.
-                  </template>
-                  Everyone is here! The spirit of RPCS3 lives on.
-                </ContentCard>
-                <ContentCard>
-                  <template #card-icon>
-                    <ToolBox />
-                  </template>
-                  <template #card-title>
-                    Ongoing development.
-                  </template>
-                  Est. 2016 by DH himself.
-                </ContentCard>
-                <ContentCard>
-                  <template #card-icon>
-                    <GameConsole />
-                  </template>
-                  <template #card-title>
-                    All your favorite titles.
-                  </template>
-                  <div class="joke-wrapper">
-                    <div class="body-text">
-                      Bloodborne coming Soon™*
-                    </div>
-                    <div class="joke-footnote">
-                      * RPCSX does not provide estimates or compatibility for any title.
-                    </div>
-                  </div>
-                </ContentCard>
-                <ContentCard>
-                  <template #card-icon>
-                    <Linux />
-                  </template>
-                  <template #card-title>
-                    Currently Linux only.
-                  </template>
-                  WSL on Windows is being discussed.
-                </ContentCard>
-                <n-divider />
+              <Home />
             </div>
           </div>
           <div id="right-column" class="column">
@@ -98,7 +56,9 @@ var coverURI;
               <h2>Get Involved</h2>
             </div>
             <div class="column-content">
-              <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+              <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400"
+                allowtransparency="true" frameborder="0"
+                sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
           </div>
         </div>
@@ -108,12 +68,13 @@ var coverURI;
 </template>
 
 <style scoped>
-
 .wrapper {
-  height: 100%;   
-  overflow: hidden;  
-  margin: 0px;  /* removes default style */
-  display: flex;  /* enables flex content for its children */
+  height: 100%;
+  overflow: hidden;
+  margin: 0px;
+  /* removes default style */
+  display: flex;
+  /* enables flex content for its children */
   box-sizing: border-box;
   flex-direction: column;
 }
@@ -126,12 +87,15 @@ var coverURI;
 }
 
 .column {
-    height: 100%;  /* allows both columns to span the full height of the browser window */
-    display: flex;
-    flex-direction: column;  /* stacks the left and right headers above the bottom content */
-    flex-wrap: nowrap;
-    margin: 8px;
+  height: 100%;
+  /* allows both columns to span the full height of the browser window */
+  display: flex;
+  flex-direction: column;
+  /* stacks the left and right headers above the bottom content */
+  flex-wrap: nowrap;
+  margin: 8px;
 }
+
 .column-content {
   display: flex;
   flex-flow: column nowrap;
@@ -140,12 +104,13 @@ var coverURI;
 }
 
 #main-column {
-    /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */ /* [OCDkirby: so that was a fucking lie.] */
-    flex-shrink: 1;
-    flex-grow: 4;
-    align-self: center;
-    align-items: center;
-    gap: 16px;
+  /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */
+  /* [OCDkirby: so that was a fucking lie.] */
+  flex-shrink: 1;
+  flex-grow: 4;
+  align-self: center;
+  align-items: center;
+  gap: 16px;
 }
 
 #right-column {
@@ -160,13 +125,13 @@ var coverURI;
 }
 
 .top-main {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .top-right {
-    flex-shrink: 0;
-    display: flex;
-    
+  flex-shrink: 0;
+  display: flex;
+
 }
 
 .joke-wrapper {
