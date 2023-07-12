@@ -1,5 +1,36 @@
 <script setup lang="ts">
 import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
+import { darkTheme } from 'naive-ui'
+import { ref } from 'vue';
+
+import 'vfonts/FiraSans.css';
+import './assets/text-styles.css';
+
+/**
+ * @type import('naive-ui').GlobalThemeOverrides
+ */
+  const lightThemeOverrides = {
+  common: {
+    primaryColor: '#000000'
+  }
+  // ...
+};
+
+const darkThemeOverrides = {
+  common: {
+    primaryColor: '#FFFFFF'
+  }
+  // ...
+};
+
+function toggleTheme() {
+  theme = theme == null ? darkTheme : null;
+  console.log(theme);
+}
+
+var theme;
+var coverURI;
+
 </script>
 
 <template>
@@ -11,7 +42,7 @@ import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
         <div class="columns">
           <div id="main-column" class="column">
             <div class="top-main">
-              <Hook :time="getTime()" :contributors="contributors" />
+              <Hook />
             </div>
           
             <div class="column-content">
@@ -153,71 +184,3 @@ import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
   word-wrap: break-word;
 }
 </style>
-
-<script lang="ts">
-  import { darkTheme } from 'naive-ui'
-  import { ref } from 'vue';
-
-  import 'vfonts/FiraSans.css';
-  import './assets/text-styles.css';
-
-  /**
-   * @type import('naive-ui').GlobalThemeOverrides
-   */
-   const lightThemeOverrides = {
-    common: {
-      primaryColor: '#000000'
-    }
-    // ...
-  };
-
-  const darkThemeOverrides = {
-    common: {
-      primaryColor: '#FFFFFF'
-    }
-    // ...
-  };
-
-  var contributors = 10; // TODO web scraping
-  // const response = await fetch("https://cors-anywhere.herokuapp.com/https://github.com/RPCSX/rpcsx/");
-  // contributors = await cheerio.load(response.text())('.Counter m1-1');
-  // console.log("hi");
-
-  var theme;
-
-  var coverURI;
-
-
-  export default defineComponent({
-    title: 'RPCSX - PS4 Emulator',
-    methods: {
-      // A hacky workaround to testing mobile
-      toggleTheme() {
-        theme = theme == null ? darkTheme : null;
-        console.log(theme);
-      },
-      openGithub() {
-        window.open('https://github.com/RPCSX/rpcsx', '_blank');
-      },
-      getTime() {
-        const divmod = (x, y) => [Math.floor(x / y), x % y]; // Utility
-
-        var developmentStart = new Date(2016, 6, 18); // Rough estimate of when DH left RPCS3
-        var today = new Date();
-        const months = (today.getFullYear() - developmentStart.getFullYear()) * 12 - developmentStart.getMonth() + today.getMonth() + 1; // Months between start and today
-        var time_result = divmod(months, 12); // [years, partial year's months]
-        return months > 12 ? (time_result[0] + Math.round(time_result[1] / 12 * 10)/10) + " years" : months + "months";
-      }
-    },
-    setup() {
-      return {
-        darkTheme,
-        theme: ref(null),
-        lightThemeOverrides,
-        darkThemeOverrides,
-        contributors
-      }
-    }
-  })
-</script>
-
