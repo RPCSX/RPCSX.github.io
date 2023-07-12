@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 function getTime() {
-  const divmod = (x, y) => [Math.floor(x / y), x % y]; // Utility
+  const divmod = (x: any, y: any) => [Math.floor(x / y), x % y]; // Utility
 
   var developmentStart = new Date(2016, 6, 18); // Rough estimate of when DH left RPCS3
   var today = new Date();
