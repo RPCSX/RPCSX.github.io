@@ -101,8 +101,4 @@ const menuOptions: MenuOption[] = [
   text-align: center;
   margin: 8px;
 }
-
-.dark-mode-button {
-  padding-left: 5px;
-}
 </style>
