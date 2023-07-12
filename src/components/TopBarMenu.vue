@@ -1,68 +1,44 @@
 <script setup lang="ts">
-import { NIcon } from 'naive-ui'
-  import {
-    Code as CodeIcon,
-    Book as BookIcon,
-    LogoDiscord as DiscordIcon,
-    Moon as MoonIcon, Sun as SunIcon
-  } from '@vicons/carbon'
+import { h, ref, Component } from 'vue'
+import { NIcon, MenuOption } from 'naive-ui'
+import {
+  Code as CodeIcon,
+  Book as BookIcon,
+  LogoDiscord as DiscordIcon,
+  Moon as MoonIcon, Sun as SunIcon
+} from '@vicons/carbon'
 
-  defineProps({
-    toggleTheme: {
-      type: Function,
-      required: true
-    },
-    coverImage: {
-      type: ref,
-      required: true
-    },
-    themex: {
-      type: ref,
-      required: true
-    },
-  })
-</script>
+const props = defineProps({
+  toggleTheme: {
+    type: Function,
+    required: true
+  },
+  coverImage: {
+    type: ref,
+    required: true
+  },
+  themex: {
+    type: ref,
+    required: true
+  },
+})
 
-<template>
-  <div class="bar-wrapper">
-    <n-button
-    quaternary
-    tag="a"
-    href="https://rpcsx.github.io/rpcsx-site/">
-      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'" width="32" height="32" />
-    </n-button>
-    <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
-    <n-button circle @click="toggleTheme()" class="dark-mode-button">
-      <template #icon>
-        <n-icon>
-          <MoonIcon />
-        </n-icon>
-      </template>
-    </n-button>
-  </div>
-</template>
-
-<style scoped>
-.bar-wrapper {
-  display: inline-block;
-  flex-flow: row nowrap;
-  text-align: center;
-  margin: 8px;
+function renderIcon (icon: Component) {
+  return () => h(NIcon, null, { default: () => h(icon) })
 }
 
-.dark-mode-button {
-  padding-left: 5px;
+function toggleTheme() {
+  this.darkModeButtonIcon = this.darkModeButtonIcon == MoonIcon ? SunIcon : MoonIcon;
+  this.$emit('toggle-darkmode');
 }
 
-</style>
-  
-<script lang="ts">
-  
-  function renderIcon (icon: Component) {
-    return () => h(NIcon, null, { default: () => h(icon) })
-  }
-  
-  const menuOptions: MenuOption[] = [
+function getCoverURI() {
+  return this.$parent.theme === null ? './assets/logo-light.png' : './assets/logo-dark.png';
+}
+
+var activeKey = null;
+
+const menuOptions: MenuOption[] = [
     {
       label: () =>
         h(
@@ -102,23 +78,36 @@ import { NIcon } from 'naive-ui'
       icon: renderIcon(DiscordIcon)
     }
   ]
-  
-  export default defineComponent({
-    methods: {
-      toggleTheme: function() {
-        this.darkModeButtonIcon = this.darkModeButtonIcon == Moon ? Sun : Moon;
-        this.$emit('toggle-darkmode');
-      },
-      getCoverURI() {
-        return this.$parent.theme === null ? './assets/logo-light.png' : './assets/logo-dark.png';
-      }
-    },
-    setup () {
-      return {
-        activeKey: ref<string | null>(null),
-        darkModeButtonIcon: ref(Moon),
-        menuOptions
-      }
-    }
-  })
 </script>
+
+<template>
+  <div class="bar-wrapper">
+    <n-button
+    quaternary
+    tag="a"
+    href="https://rpcsx.github.io/rpcsx-site/">
+      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'" width="32" height="32" />
+    </n-button>
+    <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
+    <n-button circle @click="toggleTheme()" class="dark-mode-button">
+      <template #icon>
+        <n-icon>
+          <MoonIcon />
+        </n-icon>
+      </template>
+    </n-button>
+  </div>
+</template>
+
+<style scoped>
+.bar-wrapper {
+  display: inline-block;
+  flex-flow: row nowrap;
+  text-align: center;
+  margin: 8px;
+}
+
+.dark-mode-button {
+  padding-left: 5px;
+}
+</style>
