@@ -11,12 +11,12 @@ import '../assets/text-styles.css';
                 </n-icon>
             </div>
             <div class="content-wrapper">
-                <div class="card-header">
+                <n-h3 class="card-header">
                     <slot name="card-title" />
-                </div>
-                <div class="body-text" id="card-body">
+                </n-h3>
+                <n-text class="body-text" id="card-body">
                     <slot />
-                </div>
+                </n-text>
             </div>
         </div>
     </n-card>

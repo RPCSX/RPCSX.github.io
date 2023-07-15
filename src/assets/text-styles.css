@@ -1,23 +1,4 @@
 .body-text {
-    font-family: v-sans;
+    /* font-family: v-sans; */
     font-size: 12pt;
-}
-
-.card-header {
-    font-family: v-sans;
-    font-weight: bold;
-    font-size: 14pt;
-}
-
-h2 {
-    font-family: v-sans;
-    font-size: 18pt;
-    word-wrap: break-word;
-}
-  
-h1 {
-    font-family: v-sans;
-    font-size: 30pt;
-    font-weight: bold;
-    word-wrap: break-word;
 }

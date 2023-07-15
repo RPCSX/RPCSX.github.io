@@ -1,54 +1,101 @@
 <script setup lang="ts">
+import 'vfonts/FiraSans.css';
+
 import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
+import { GlobalThemeOverrides, darkTheme } from 'naive-ui'
+import { TypographyThemeVars } from 'naive-ui/es/typography/styles';
+import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface';
+
+import './assets/text-styles.css';
+import { defineComponent, ref } from 'vue';
+import { CardThemeVars } from 'naive-ui/es/card/styles';
+
+const lightBackg = "'#FFFFFF'"
+const darkBackg = "'#000000'"
+
+const typographyOverrides: Partial<TypographyThemeVars> = {
+  headerFontSize1: '30pt',
+  headerFontWeight: 'bold',
+  headerFontSize2: '18pt',
+  headerFontSize3: '14pt',
+  headerMargin3: '0px',
+}
+
+const cardOverrides : Partial<CardThemeVars> = {
+  titleFontWeight: 'bold',
+  titleFontSizeHuge: '16pt',
+  titleFontSizeMedium: '16pt',
+  titleFontSizeSmall: '16pt'
+}
+
+const lightThemeOverrides: GlobalThemeOverrides = {
+  common: {
+    baseColor: '#FFFFFF',
+    primaryColor: '#000000',
+    fontFamily: 'v-sans'
+  },
+  Typography: typographyOverrides,
+  Card: cardOverrides,
+  // ...
+};
+
+const darkThemeOverrides: GlobalThemeOverrides = {
+  common: {
+    baseColor: '#000000',
+    primaryColor: '#FFFFFF'
+  },
+  Typography: typographyOverrides,
+  Card: cardOverrides,
+  // ...
+};
 </script>
 
 <template>
-  <n-config-provider :theme="theme"
-                     :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
-    <main>
+  <n-config-provider :theme="theme" :themeOverrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
+    <main :class="`main-${theme === null ? 'light' : 'dark'}`">
       <div class="wrapper">
-        <TopBarMenu :toggleTheme="toggleTheme" :themex="theme"/>
+        <TopBarMenu :themex="theme" :toggle="toggleTheme" />
         <div class="columns">
           <div id="main-column" class="column">
             <div class="top-main">
-              <Hook :time="getTime()" :contributors="contributors" />
+              <Hook :themex="theme"/>
             </div>
           
             <div class="column-content">
-                <MainCard :themex="theme" />
-                <ContentCard>
-                  <template #card-icon>
-                    <PedestrianFamily />
-                  </template>
-                  <template #card-title>
-                    Huge community.
-                  </template>
-                  Everyone is here! The spirit of RPCS3 lives on.
-                </ContentCard>
-                <ContentCard>
-                  <template #card-icon>
-                    <ToolBox />
-                  </template>
-                  <template #card-title>
-                    Ongoing development.
-                  </template>
-                  Est. 2016 by DH himself.
-                </ContentCard>
-                <ContentCard>
-                  <template #card-icon>
-                    <GameConsole />
-                  </template>
-                  <template #card-title>
-                    All your favorite titles.
-                  </template>
-                  <div class="joke-wrapper">
-                    <div class="body-text">
-                      Bloodborne coming Soon™*
-                    </div>
-                    <div class="joke-footnote">
-                      * RPCSX does not provide estimates or compatibility for any title.
-                    </div>
+              <MainCard :themex="theme"/>
+              <ContentCard>
+                <template #card-icon>
+                  <PedestrianFamily />
+                </template>
+                <template #card-title>
+                  Huge community.
+                </template>
+                Everyone is here! The spirit of RPCS3 lives on.
+              </ContentCard>
+              <ContentCard>
+                <template #card-icon>
+                  <ToolBox />
+                </template>
+                <template #card-title>
+                  Ongoing development.
+                </template>
+                Est. 2016 by DH himself.
+              </ContentCard>
+              <ContentCard>
+                <template #card-icon>
+                  <GameConsole />
+                </template>
+                <template #card-title>
+                  All your favorite titles.
+                </template>
+                <div class="joke-wrapper">
+                  <div class="body-text">
+                    Bloodborne coming Soon™*
                   </div>
+                  <div class="joke-footnote">
+                    *RPCSX does not provide estimates or compatibility for any title.
+                  </div>
+                </div>
                 </ContentCard>
                 <ContentCard>
                   <template #card-icon>
@@ -64,7 +111,7 @@ import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
           </div>
           <div id="right-column" class="column">
             <div class="top-right">
-              <h2>Get Involved</h2>
+              <n-h2>Get Involved</n-h2>
             </div>
             <div class="column-content">
               <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
@@ -77,6 +124,13 @@ import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
 </template>
 
 <style scoped>
+.main-light {
+  background-color: #FFFFFF;
+}
+
+.main-dark {
+  background-color: black;
+}
 
 .wrapper {
   height: 100%;   
@@ -155,69 +209,14 @@ import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
 </style>
 
 <script lang="ts">
-  import { darkTheme } from 'naive-ui'
-  import { ref } from 'vue';
+var theme = ref<BuiltInGlobalTheme | null>(null);
 
-  import 'vfonts/FiraSans.css';
-  import './assets/text-styles.css';
-
-  /**
-   * @type import('naive-ui').GlobalThemeOverrides
-   */
-   const lightThemeOverrides = {
-    common: {
-      primaryColor: '#000000'
+export default defineComponent({
+  methods: {
+    toggleTheme() {
+      theme.value = theme.value == null ? darkTheme : null;
     }
-    // ...
-  };
-
-  const darkThemeOverrides = {
-    common: {
-      primaryColor: '#FFFFFF'
-    }
-    // ...
-  };
-
-  var contributors = 10; // TODO web scraping
-  // const response = await fetch("https://cors-anywhere.herokuapp.com/https://github.com/RPCSX/rpcsx/");
-  // contributors = await cheerio.load(response.text())('.Counter m1-1');
-  // console.log("hi");
-
-  var theme;
-
-  var coverURI;
-
-
-  export default defineComponent({
-    title: 'RPCSX - PS4 Emulator',
-    methods: {
-      // A hacky workaround to testing mobile
-      toggleTheme() {
-        theme = theme == null ? darkTheme : null;
-        console.log(theme);
-      },
-      openGithub() {
-        window.open('https://github.com/RPCSX/rpcsx', '_blank');
-      },
-      getTime() {
-        const divmod = (x, y) => [Math.floor(x / y), x % y]; // Utility
-
-        var developmentStart = new Date(2016, 6, 18); // Rough estimate of when DH left RPCS3
-        var today = new Date();
-        const months = (today.getFullYear() - developmentStart.getFullYear()) * 12 - developmentStart.getMonth() + today.getMonth() + 1; // Months between start and today
-        var time_result = divmod(months, 12); // [years, partial year's months]
-        return months > 12 ? (time_result[0] + Math.round(time_result[1] / 12 * 10)/10) + " years" : months + "months";
-      }
-    },
-    setup() {
-      return {
-        darkTheme,
-        theme: ref(null),
-        lightThemeOverrides,
-        darkThemeOverrides,
-        contributors
-      }
-    }
-  })
+  },
+  props: ['theme']
+})
 </script>
-

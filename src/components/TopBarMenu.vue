@@ -1,43 +1,88 @@
 <script setup lang="ts">
-import { NIcon } from 'naive-ui'
-  import {
-    Code as CodeIcon,
-    Book as BookIcon,
-    LogoDiscord as DiscordIcon,
-    Moon as MoonIcon, Sun as SunIcon
-  } from '@vicons/carbon'
+import { h, defineComponent, Component } from 'vue'
+import { NIcon, MenuOption } from 'naive-ui'
+import {
+  Code as CodeIcon,
+  Book as BookIcon,
+  LogoDiscord as DiscordIcon,
+  Moon as MoonIcon, Sun as SunIcon
+} from '@vicons/carbon'
 
-  defineProps({
-    toggleTheme: {
-      type: Function,
-      required: true
-    },
-    coverImage: {
-      type: ref,
-      required: true
-    },
-    themex: {
-      type: ref,
-      required: true
-    },
-  })
+const props = defineProps({
+  themex: {
+    type: Object
+  },
+  toggle: {
+    type: Function,
+    required: true
+  }
+})
+
+function renderIcon(icon: Component) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+
+var activeKey: any = null
+
+
+
+const menuOptions: MenuOption[] = [
+  {
+    label: () =>
+      h(
+        'a',
+        {
+          href: 'https://github.com/RPCSX/rpcsx',
+          target: '_blank',
+          rel: 'noopenner noreferrer'
+        },
+        'development'
+      ),
+    key: 'development',
+    icon: renderIcon(CodeIcon)
+  },
+  {
+    label: 'wiki',
+    key: 'wiki',
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        // TODO: populate
+      }
+    ]
+  },
+  {
+    label: () =>
+      h(
+        'a',
+        {
+          href: 'https://discord.com/invite/mx8FbxN5',
+          target: '_blank',
+          rel: 'noopenner noreferrer'
+        },
+        'discuss'
+      ),
+    key: 'discuss',
+    icon: renderIcon(DiscordIcon)
+  }
+]
 </script>
 
 <template>
   <div class="bar-wrapper">
-    <n-button
-    quaternary
-    tag="a"
-    href="https://rpcsx.github.io/rpcsx-site/">
-      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'" width="32" height="32" />
+    <n-button quaternary tag="a" href="https://rpcsx.github.io/rpcsx-site/">
+      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'"
+        width="32" height="32" />
     </n-button>
     <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
-    <n-button circle @click="toggleTheme()" class="dark-mode-button">
+    <n-button circle @click="toggle" class="dark-mode-button">
       <template #icon>
         <n-icon>
-          <MoonIcon />
+          <MoonIcon v-if="themex == null" />
+          <SunIcon v-else />
         </n-icon>
       </template>
+
     </n-button>
   </div>
 </template>
@@ -49,76 +94,14 @@ import { NIcon } from 'naive-ui'
   text-align: center;
   margin: 8px;
 }
-
-.dark-mode-button {
-  padding-left: 5px;
-}
-
 </style>
-  
+
 <script lang="ts">
-  
-  function renderIcon (icon: Component) {
-    return () => h(NIcon, null, { default: () => h(icon) })
+export default defineComponent({
+  methods: {
+    toggleTheme() {
+      props.toggle()
+    }
   }
-  
-  const menuOptions: MenuOption[] = [
-    {
-      label: () =>
-        h(
-          'a',
-          {
-            href: 'https://github.com/RPCSX/rpcsx',
-            target: '_blank',
-            rel: 'noopenner noreferrer'
-          },
-          'development'
-        ),
-      key: 'development',
-      icon: renderIcon(CodeIcon)
-    },
-    {
-      label: 'wiki',
-      key: 'wiki',
-      icon: renderIcon(BookIcon),
-      children: [
-        {
-          // TODO: populate
-        }
-      ]
-    },
-    {
-      label: () => 
-        h(
-          'a',
-          {
-            href: 'https://discord.com/invite/mx8FbxN5',
-            target: '_blank',
-            rel: 'noopenner noreferrer'
-          },
-          'discuss'
-        ),
-      key: 'discuss',
-      icon: renderIcon(DiscordIcon)
-    }
-  ]
-  
-  export default defineComponent({
-    methods: {
-      toggleTheme: function() {
-        this.darkModeButtonIcon = this.darkModeButtonIcon == Moon ? Sun : Moon;
-        this.$emit('toggle-darkmode');
-      },
-      getCoverURI() {
-        return this.$parent.theme === null ? './assets/logo-light.png' : './assets/logo-dark.png';
-      }
-    },
-    setup () {
-      return {
-        activeKey: ref<string | null>(null),
-        darkModeButtonIcon: ref(Moon),
-        menuOptions
-      }
-    }
-  })
+})
 </script>

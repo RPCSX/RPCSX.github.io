@@ -1,10 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import '../assets/text-styles.css';
+
+import { ref } from 'vue'
 
 defineProps({
   themex: {
-    type: ref,
-    required: true
+    type: Object
   }
 })
 </script>
@@ -21,7 +22,7 @@ defineProps({
             <img :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'">
         </template>
         <template #header>
-            <div class="card-header">RPCSX is your PlayStation 4 emulator.</div>
+            RPCSX is your PlayStation 4 emulator.
         </template>
         <div class="body-text">Use only with lawfully obtained archival copies of PS4 games you physically own.</div>
     </n-card>

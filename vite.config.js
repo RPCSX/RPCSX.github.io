@@ -6,6 +6,8 @@
  * Important notes: 
  * The project automatically imports *most* vue and naive-ui code as you go, which saves significant space in your script blocks. Just make sure to export your components.
  * However, the icon library does not have an auto-importer, so your script blocks will need to import those.
+ * Theming is not done with CSS, but overrides. See App.vue for examples. They're very similar to CSS, but check the docs.
+ * Also look into the NThemeEditor component, makes theming much easier.
  */
 
 import { fileURLToPath, URL } from 'node:url'
@@ -26,10 +28,13 @@ export default defineConfig({
         'vue',
         {
           'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar'
+            'NIcon',
+            'NConfigProvider',
+            'NCard',
+            'NText',
+            'NH1',
+            'NH2',
+            'NH3'
           ]
         }
       ]
