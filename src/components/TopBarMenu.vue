@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { h, defineComponent, Component } from 'vue'
-import { NIcon, MenuOption } from 'naive-ui'
+import { NIcon, MenuOption, MenuGroupOption, MenuDividerOption } from 'naive-ui'
 import {
   Code as CodeIcon,
   Book as BookIcon,
   LogoDiscord as DiscordIcon,
   Moon as MoonIcon, Sun as SunIcon
 } from '@vicons/carbon'
+import { html, load } from 'cheerio'
 
 const props = defineProps({
   themex: {
@@ -24,7 +25,31 @@ function renderIcon(icon: Component) {
 
 var activeKey: any = null
 
+// Web scraping
+// AKA the reason this component is async
+const page = await fetch("https://rpcsx.github.io/wiki/")
+const cont = await page.text();
+const $ = load(cont)
+const pages = $("li.libdoc-sidebar-item > a")
+var wikiLinks: (MenuOption | MenuGroupOption | MenuDividerOption)[] = []
+for (let index = 0; index < pages.length; index++) {
+  const element = pages[index];
+  const linkName = element.children[0].data.trim() // The property does exist just trust me bro
 
+  wikiLinks[index] = {
+    label: () =>
+      h(
+        'a',
+        {
+          href: 'https://rpcsx.github.io' + element.attribs.href,
+          target: '_blank',
+          rel: 'noopenner noreferrer'
+        },
+        linkName
+      ),
+    key: 'wiki-' + linkName
+  }
+}
 
 const menuOptions: MenuOption[] = [
   {
@@ -45,11 +70,7 @@ const menuOptions: MenuOption[] = [
     label: 'wiki',
     key: 'wiki',
     icon: renderIcon(BookIcon),
-    children: [
-      {
-        // TODO: populate
-      }
-    ]
+    children: wikiLinks
   },
   {
     label: () =>

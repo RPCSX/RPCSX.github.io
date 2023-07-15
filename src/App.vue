@@ -61,7 +61,9 @@ const darkThemeOverrides: GlobalThemeOverrides = {
   <n-config-provider :theme="theme" :themeOverrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
     <main :class="`main-${theme === null ? 'light' : 'dark'}`">
       <div class="wrapper">
-        <TopBarMenu :themex="theme" :toggle="toggleTheme" />
+        <Suspense>
+          <TopBarMenu :themex="theme" :toggle="toggleTheme" />
+        </Suspense>
         <div class="columns">
           <div id="main-column" class="column">
             <div class="top-main">
