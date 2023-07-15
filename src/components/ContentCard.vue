@@ -23,33 +23,33 @@ import '../assets/text-styles.css';
 </template>
 
 <style scoped>
-    .n-card {
-        max-width: 400px;
-        min-width: 400px;
-    }
+  .n-card {
+    max-width: 400px;
+    min-width: 400px;
+  }
 
-    .card-wrapper {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-    }
-    
-    .icon-wrapper {
-        margin: 10px 20px 10px 0px;
-        border: 2px;
-        border-radius: 2px;
-        border-color: black; /* TODO fixme */
-    }
+  .card-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+  
+  .icon-wrapper {
+    margin: 10px 20px 10px 0px;
+    border: 2px;
+    border-radius: 2px;
+    border-color: black; /* TODO fixme */
+  }
 
-    .card-icon {
-        font-size: 100px;
-    }
+  .card-icon {
+    font-size: 100px;
+  }
 
-    .content-wrapper {
-        flex-shrink: 1;
-    }
+  .content-wrapper {
+    flex-shrink: 1;
+  }
 
-    #card-body {
-        word-wrap: break-word;
-    }
+  #card-body {
+    word-wrap: break-word;
+  }
 </style>

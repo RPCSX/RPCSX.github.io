@@ -149,11 +149,11 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 .column {
-    height: 100%;  /* allows both columns to span the full height of the browser window */
-    display: flex;
-    flex-direction: column;  /* stacks the left and right headers above the bottom content */
-    flex-wrap: nowrap;
-    margin: 8px;
+  height: 100%;  /* allows both columns to span the full height of the browser window */
+  display: flex;
+  flex-direction: column;  /* stacks the left and right headers above the bottom content */
+  flex-wrap: nowrap;
+  margin: 8px;
 }
 .column-content {
   display: flex;
@@ -163,12 +163,12 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 #main-column {
-    /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */ /* [OCDkirby: so that was a fucking lie.] */
-    flex-shrink: 1;
-    flex-grow: 4;
-    align-self: center;
-    align-items: center;
-    gap: 16px;
+  /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */ /* [OCDkirby: so that was a fucking lie.] */
+  flex-shrink: 1;
+  flex-grow: 4;
+  align-self: center;
+  align-items: center;
+  gap: 16px;
 }
 
 #right-column {
@@ -183,12 +183,12 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 .top-main {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .top-right {
-    flex-shrink: 0;
-    display: flex;
+  flex-shrink: 0;
+  display: flex;
     
 }
 
