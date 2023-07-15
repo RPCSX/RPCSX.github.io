@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import '../assets/text-styles.css';
 
 import { ref } from 'vue'
 

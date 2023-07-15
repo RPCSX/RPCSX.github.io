@@ -1,7 +1,3 @@
-<script setup>
-import '../assets/text-styles.css';
-</script>
-
 <template>
     <n-card hoverable>
         <div class="card-wrapper">

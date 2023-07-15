@@ -6,12 +6,8 @@ import { GlobalThemeOverrides, darkTheme } from 'naive-ui'
 import { TypographyThemeVars } from 'naive-ui/es/typography/styles';
 import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface';
 
-import './assets/text-styles.css';
 import { defineComponent, ref } from 'vue';
 import { CardThemeVars } from 'naive-ui/es/card/styles';
-
-const lightBackg = "'#FFFFFF'"
-const darkBackg = "'#000000'"
 
 const typographyOverrides: Partial<TypographyThemeVars> = {
   headerFontSize1: '30pt',
@@ -21,30 +17,41 @@ const typographyOverrides: Partial<TypographyThemeVars> = {
   headerMargin3: '0px',
 }
 
+const darkTypography: Partial<TypographyThemeVars> = {
+  ...typographyOverrides,
+  textColor: '#F8F2F1' 
+}
+
+const lightTypography: Partial<TypographyThemeVars> = {
+  ...typographyOverrides,
+  textColor: '#121420' 
+}
+
 const cardOverrides : Partial<CardThemeVars> = {
   titleFontWeight: 'bold',
   titleFontSizeHuge: '16pt',
   titleFontSizeMedium: '16pt',
-  titleFontSizeSmall: '16pt'
+  titleFontSizeSmall: '16pt',
+  fontSizeMedium: '12pt',
 }
 
 const lightThemeOverrides: GlobalThemeOverrides = {
   common: {
-    baseColor: '#FFFFFF',
-    primaryColor: '#000000',
+    baseColor: '#F8F2F1',
+    primaryColor: '#121420',
     fontFamily: 'v-sans'
   },
-  Typography: typographyOverrides,
+  Typography: lightTypography,
   Card: cardOverrides,
   // ...
 };
 
 const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
-    baseColor: '#000000',
-    primaryColor: '#FFFFFF'
+    baseColor: '#121420',
+    primaryColor: '#F8F2F1'
   },
-  Typography: typographyOverrides,
+  Typography: darkTypography,
   Card: cardOverrides,
   // ...
 };
@@ -125,11 +132,11 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 
 <style scoped>
 .main-light {
-  background-color: #FFFFFF;
+  background-color: #F8F2F1;
 }
 
 .main-dark {
-  background-color: black;
+  background-color: #121420;
 }
 
 .wrapper {
@@ -209,7 +216,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 </style>
 
 <script lang="ts">
-var theme = ref<BuiltInGlobalTheme | null>(null);
+var theme = ref<BuiltInGlobalTheme | null>(darkTheme);
 
 export default defineComponent({
   methods: {
