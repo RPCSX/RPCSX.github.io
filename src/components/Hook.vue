@@ -11,11 +11,9 @@ function getTime() {
   return months > 12 ? (time_result[0] + Math.round(time_result[1] / 12 * 10) / 10) + " years" : months + "months";
 }
 
-var contributors = 10; // TODO web scraping
-// const response = await fetch("https://cors-anywhere.herokuapp.com/https://github.com/RPCSX/rpcsx/");
-// contributors = await cheerio.load(response.text())('.Counter m1-1');
-// console.log("hi");
-
+const response = await fetch('https://api.github.com/repos/rpcsx/rpcsx/contributors?per_page=1')
+const headers = response.headers
+var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
 </script>
 
 <template>

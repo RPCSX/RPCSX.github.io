@@ -67,7 +67,9 @@ const darkThemeOverrides: GlobalThemeOverrides = {
         <div class="columns">
           <div id="main-column" class="column">
             <div class="top-main">
-              <Hook :themex="theme"/>
+              <Suspense>
+                <Hook :themex="theme"/>
+              </Suspense>
             </div>
           
             <div class="column-content">
