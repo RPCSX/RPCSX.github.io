@@ -2,7 +2,7 @@
 import 'vfonts/FiraSans.css';
 
 import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
-import { GlobalThemeOverrides, darkTheme } from 'naive-ui'
+import { GlobalThemeOverrides, darkTheme, NLayout } from 'naive-ui'
 import { TypographyThemeVars } from 'naive-ui/es/typography/styles';
 import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface';
 
@@ -59,7 +59,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 
 <template>
   <n-config-provider :theme="theme" :themeOverrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
-    <main :class="`main-${theme === null ? 'light' : 'dark'}`">
+    <n-layout>
       <div class="wrapper">
         <Suspense>
           <TopBarMenu :themex="theme" :toggle="toggleTheme" />
@@ -73,7 +73,6 @@ const darkThemeOverrides: GlobalThemeOverrides = {
             </div>
           
             <div class="column-content">
-              <MainCard :themex="theme"/>
               <ContentCard>
                 <template #card-icon>
                   <PedestrianFamily />
@@ -125,24 +124,17 @@ const darkThemeOverrides: GlobalThemeOverrides = {
               <n-h2>Get Involved</n-h2>
             </div>
             <div class="column-content">
-              <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+              <MainCard :themex="theme"/>
+              <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </n-layout>
   </n-config-provider>
 </template>
 
 <style scoped>
-.main-light {
-  background-color: #F8F2F1;
-}
-
-.main-dark {
-  background-color: #121420;
-}
-
 .wrapper {
   height: 100%;   
   overflow: hidden;  
