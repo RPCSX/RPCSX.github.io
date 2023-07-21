@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NH1, NText } from 'naive-ui';
+import { NText, NGradientText } from 'naive-ui';
 
 function getTime() {
   const divmod = (x: any, y: any) => [Math.floor(x / y), x % y]; // Utility
@@ -16,10 +16,42 @@ const headers = response.headers
 var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
 </script>
 
+<style scoped>
+.hook {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+}
+
+.hook-item {
+  padding: 4px 0px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.n-gradient-text {
+  font-size: 32pt;
+}
+
+.n-text {
+  font-size: 16pt;
+  font-weight: bold;
+}
+</style>
+
 <template>
   <div class="hook">
-    <n-h1><n-text>{{ getTime() }} of development.</n-text></n-h1>
-    <n-h1><n-text>{{ contributors }} experienced contributors.</n-text></n-h1>
-    <n-h1><n-text>0 days since someone asked for Bloodborne.</n-text></n-h1>
+    <div class="hook-item">
+      <n-gradient-text type="info">{{ getTime() }}</n-gradient-text>
+      <n-text>of development.</n-text>
+    </div>
+    <div class="hook-item">
+      <n-gradient-text type="info">{{ contributors }}</n-gradient-text>
+      <n-text>experienced contributors.</n-text>
+    </div>
+    <div class="hook-item">
+      <n-gradient-text type="info">0</n-gradient-text>
+      <n-text>days since someone asked for Bloodborne.</n-text>
+    </div>
   </div>
 </template>

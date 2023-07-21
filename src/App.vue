@@ -1,13 +1,42 @@
 <script setup lang="ts">
 import 'vfonts/FiraSans.css';
 
-import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
-import { GlobalThemeOverrides, darkTheme, NLayout } from 'naive-ui'
-import { TypographyThemeVars } from 'naive-ui/es/typography/styles';
-import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface';
-
 import { defineComponent, ref } from 'vue';
+
+import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
+import { GlobalThemeOverrides, darkTheme, NLayout, NCarousel } from 'naive-ui'
+import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface';
 import { CardThemeVars } from 'naive-ui/es/card/styles';
+import { TypographyThemeVars } from 'naive-ui/es/typography/styles';
+import { GradientTextThemeVars } from 'naive-ui/es/gradient-text/styles';
+import { MenuThemeVars } from 'naive-ui/es/menu/styles';
+
+const menuOverrides: Partial<MenuThemeVars> = {
+  fontSize: '12pt',
+  itemTextColorActiveHorizontal: '#4C3E9C',
+  itemIconColorActiveHorizontal: '#4C3E9C',
+}
+
+const darkMenu: Partial<MenuThemeVars> = {
+  ...menuOverrides,
+  itemTextColorHorizontal: '#F8F2F1',
+  groupTextColor: '#F8F2F1',
+  itemTextColorHoverHorizontal: '#739AF0',
+  itemIconColorHoverHorizontal: '#739AF0',
+}
+
+const lightMenu: Partial<MenuThemeVars> = {
+  ...menuOverrides,
+  groupTextColor: '#121420',
+  itemTextColorHorizontal: '#121420',
+  itemTextColorHoverHorizontal: '#1D5DEC',
+  itemIconColorHoverHorizontal: '#1D5DEC',
+}
+
+const gradientTextOverrides: Partial<GradientTextThemeVars> = {
+  colorEndInfo: '#1D5DEC',
+  colorStartInfo: '#4C3E9C',
+}
 
 const typographyOverrides: Partial<TypographyThemeVars> = {
   headerFontSize1: '30pt',
@@ -33,101 +62,121 @@ const cardOverrides : Partial<CardThemeVars> = {
   titleFontSizeMedium: '16pt',
   titleFontSizeSmall: '16pt',
   fontSizeMedium: '12pt',
+  borderRadius: '20px'
+}
+
+const lightCard : Partial<CardThemeVars> = {
+  ...cardOverrides,
+  borderColor: '#1D5DEC'
 }
 
 const lightThemeOverrides: GlobalThemeOverrides = {
   common: {
     baseColor: '#F8F2F1',
     primaryColor: '#121420',
-    fontFamily: 'v-sans'
+    fontFamily: 'v-sans',
+    cardColor: '#F8F2F1'
   },
   Typography: lightTypography,
-  Card: cardOverrides,
+  Card: lightCard,
+  GradientText: gradientTextOverrides,
+  Menu: lightMenu,
   // ...
 };
 
 const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
     baseColor: '#121420',
-    primaryColor: '#F8F2F1'
+    primaryColor: '#F8F2F1',
+    cardColor: '#121420',
   },
   Typography: darkTypography,
   Card: cardOverrides,
+  GradientText: gradientTextOverrides,
+  Menu: darkMenu,
   // ...
 };
 </script>
 
 <template>
   <n-config-provider :theme="theme" :themeOverrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
-    <n-layout>
+    <n-layout :class="`layout-${theme === null ? 'light' : 'dark'}`">
       <div class="wrapper">
-        <Suspense>
-          <TopBarMenu :themex="theme" :toggle="toggleTheme" />
-        </Suspense>
-        <div class="columns">
-          <div id="main-column" class="column">
-            <div class="top-main">
-              <Suspense>
-                <Hook :themex="theme"/>
-              </Suspense>
-            </div>
-          
-            <div class="column-content">
-              <ContentCard>
-                <template #card-icon>
-                  <PedestrianFamily />
-                </template>
-                <template #card-title>
-                  Huge community.
-                </template>
-                Everyone is here! The spirit of RPCS3 lives on.
-              </ContentCard>
-              <ContentCard>
-                <template #card-icon>
-                  <ToolBox />
-                </template>
-                <template #card-title>
-                  Ongoing development.
-                </template>
-                Est. 2016 by DH himself.
-              </ContentCard>
-              <ContentCard>
-                <template #card-icon>
-                  <GameConsole />
-                </template>
-                <template #card-title>
-                  All your favorite titles.
-                </template>
-                <div class="joke-wrapper">
-                  <div class="body-text">
-                    Bloodborne coming Soon™*
-                  </div>
-                  <div class="joke-footnote">
-                    *RPCSX does not provide estimates or compatibility for any title.
-                  </div>
-                </div>
+        <div class="top-portion-wrapper">
+          <Suspense>
+            <TopBarMenu :themex="theme" :toggle="toggleTheme" />
+          </Suspense>
+          <div class="columns">
+            <div id="main-column" class="column">
+              <div class="top-main">
+                <Suspense>
+                  <Hook :themex="theme"/>
+                </Suspense>
+              </div>
+    
+              <div class="column-content">
+                <!-- <ContentCard>
+                  <template #card-icon>
+                    <PedestrianFamily />
+                  </template>
+                  <template #card-title>
+                    Huge community.
+                  </template>
+                  Everyone is here! The spirit of RPCS3 lives on.
                 </ContentCard>
                 <ContentCard>
                   <template #card-icon>
-                    <Linux />
+                    <ToolBox />
                   </template>
                   <template #card-title>
-                    Currently Linux only.
+                    Ongoing development.
                   </template>
-                  WSL on Windows is being discussed.
+                  Est. 2016 by DH himself.
                 </ContentCard>
-                <n-divider />
+                <ContentCard>
+                  <template #card-icon>
+                    <GameConsole />
+                  </template>
+                  <template #card-title>
+                    All your favorite titles.
+                  </template>
+                  <div class="joke-wrapper">
+                    <div class="body-text">
+                      Bloodborne coming Soon™*
+                    </div>
+                    <div class="joke-footnote">
+                      *RPCSX does not provide estimates or compatibility for any title.
+                    </div>
+                  </div>
+                  </ContentCard>
+                  <ContentCard>
+                    <template #card-icon>
+                      <Linux />
+                    </template>
+                    <template #card-title>
+                      Currently Linux only.
+                    </template>
+                    WSL on Windows is being discussed.
+                  </ContentCard> -->
+              </div>
+            </div>
+            <div id="right-column" class="column">
+              <div class="top-right">
+                <MainCard :themex="theme"/>
+              </div>
+              <div class="column-content">
+                <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
+              </div>
             </div>
           </div>
-          <div id="right-column" class="column">
-            <div class="top-right">
-              <n-h2>Get Involved</n-h2>
-            </div>
-            <div class="column-content">
-              <MainCard :themex="theme"/>
-              <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
-            </div>
-          </div>
+        </div>
+        <n-divider />
+        <div class="bottom-portion-wrapper">
+          <n-carousel autoplay direction="horizontal" dot-type="line">
+            <img class="carousel-img" src="/assets/we-are-doomed.png">
+            <img class="carousel-img" src="/assets/sample-1.png">
+            <img class="carousel-img" src="/assets/steamydeck.jpg">
+          </n-carousel>
         </div>
       </div>
     </n-layout>
@@ -135,13 +184,53 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 </template>
 
 <style scoped>
+.n-layout {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.n-carousel {
+  width: 800px;
+  height: 450px;
+  align-self: center;
+}
+
+.n-divider {
+  margin: 0px 16px;
+}
+
+.carousel-img {
+  width: 800px;
+  height: 450px;
+  object-fit: cover;
+}
+
+.layout-dark {
+  background-image: url('/assets/background-dark.png');
+}
+
+.layout-light {
+  background-image: url('/assets/background-light.png');
+}
+
 .wrapper {
   height: 100%;   
   overflow: hidden;  
-  margin: 0px;  /* removes default style */
-  display: flex;  /* enables flex content for its children */
+  margin: 10px 10px;
   box-sizing: border-box;
+}
+
+.top-portion-wrapper {
+  display: flex;  /* enables flex content for its children */
   flex-direction: column;
+}
+
+.bottom-portion-wrapper {
+  margin-top: 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 .columns {
@@ -149,6 +238,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
   flex-flow: row wrap;
   justify-content: center;
   align-items: stretch;
+  margin-top: 20px;
 }
 
 .column {
@@ -168,15 +258,15 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 #main-column {
   /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */ /* [OCDkirby: so that was a fucking lie.] */
   flex-shrink: 1;
-  flex-grow: 4;
+  flex-grow: 2;
   align-self: center;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 #right-column {
-  flex-grow: 0;
-  gap: 5px;
+  flex-grow: 1;
+  gap: 16px;
   padding-right: 10px;
 }
 
