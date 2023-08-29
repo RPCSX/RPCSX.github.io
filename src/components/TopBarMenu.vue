@@ -77,7 +77,7 @@ const menuOptions: MenuOption[] = [
       h(
         'a',
         {
-          href: 'https://discord.com/invite/mx8FbxN5',
+          href: 'https://discord.com/invite/WEGamDwZnE',
           target: '_blank',
           rel: 'noopenner noreferrer'
         },
