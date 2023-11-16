@@ -37,11 +37,17 @@ var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
   font-size: 16pt;
   font-weight: bold;
 }
+
+@font-face {
+  font-family: "Rave";
+  src: url('./fonts/The_Rave_Is_In_Your_Pants.otf');
+}
 </style>
 
 <template>
   <div class="hook">
     <div class="hook-item">
+      <n-gradient-text type="info" size="72pt" style="font-family: 'Rave';">RPCSX</n-gradient-text>
       <n-gradient-text type="info">{{ getTime() }}</n-gradient-text>
       <n-text>of development.</n-text>
     </div>
