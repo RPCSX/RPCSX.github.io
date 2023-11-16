@@ -39,7 +39,7 @@ const lightMenu: Partial<MenuThemeVars> = {
 // }
 const gradientTextOverrides: Partial<GradientTextThemeVars> = {
   rotate: '188deg',
-  colorEndInfo: '#150fff',
+  colorEndInfo: '#3633fa',
   colorStartInfo: '#9600ff',
 }
 
