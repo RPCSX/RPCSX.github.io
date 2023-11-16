@@ -92,8 +92,7 @@ const menuOptions: MenuOption[] = [
 <template>
   <div class="bar-wrapper">
     <n-button quaternary tag="a" href="https://rpcsx.github.io/rpcsx-site/">
-      <img alt="RPCSX logo" class="logo" :src="themex == null ? './assets/logo-light.png' : './assets/logo-dark.png'"
-        width="32" height="32" />
+      <img alt="RPCSX logo" class="logo" src="/assets/logo-dark.png" width="32" height="32" />
     </n-button>
     <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
     <n-button circle @click="toggle" class="dark-mode-button">
