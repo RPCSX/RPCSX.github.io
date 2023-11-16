@@ -33,9 +33,14 @@ const lightMenu: Partial<MenuThemeVars> = {
   itemIconColorHoverHorizontal: '#1D5DEC',
 }
 
+// const gradientTextOverrides: Partial<GradientTextThemeVars> = {
+//   colorEndInfo: '#1D5DEC',
+//   colorStartInfo: '#4C3E9C',
+// }
 const gradientTextOverrides: Partial<GradientTextThemeVars> = {
-  colorEndInfo: '#1D5DEC',
-  colorStartInfo: '#4C3E9C',
+  rotate: '2deg',
+  colorEndInfo: '#150fff',
+  colorStartInfo: '#9600ff',
 }
 
 const typographyOverrides: Partial<TypographyThemeVars> = {
@@ -48,15 +53,15 @@ const typographyOverrides: Partial<TypographyThemeVars> = {
 
 const darkTypography: Partial<TypographyThemeVars> = {
   ...typographyOverrides,
-  textColor: '#F8F2F1' 
+  textColor: '#F8F2F1'
 }
 
 const lightTypography: Partial<TypographyThemeVars> = {
   ...typographyOverrides,
-  textColor: '#121420' 
+  textColor: '#121420'
 }
 
-const cardOverrides : Partial<CardThemeVars> = {
+const cardOverrides: Partial<CardThemeVars> = {
   titleFontWeight: 'bold',
   titleFontSizeHuge: '16pt',
   titleFontSizeMedium: '16pt',
@@ -65,7 +70,7 @@ const cardOverrides : Partial<CardThemeVars> = {
   borderRadius: '20px'
 }
 
-const lightCard : Partial<CardThemeVars> = {
+const lightCard: Partial<CardThemeVars> = {
   ...cardOverrides,
   borderColor: '#1D5DEC'
 }
@@ -110,10 +115,10 @@ const darkThemeOverrides: GlobalThemeOverrides = {
             <div id="main-column" class="column">
               <div class="top-main">
                 <Suspense>
-                  <Hook :themex="theme"/>
+                  <Hook :themex="theme" />
                 </Suspense>
               </div>
-    
+
               <div class="column-content">
                 <!-- <ContentCard>
                   <template #card-icon>
@@ -162,7 +167,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
             </div>
             <div id="right-column" class="column">
               <div class="top-right">
-                <MainCard :themex="theme"/>
+                <MainCard :themex="theme" />
               </div>
               <div class="column-content">
                 <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
@@ -215,14 +220,15 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 .wrapper {
-  height: 100%;   
-  overflow: hidden;  
+  height: 100%;
+  overflow: hidden;
   margin: 10px 10px;
   box-sizing: border-box;
 }
 
 .top-portion-wrapper {
-  display: flex;  /* enables flex content for its children */
+  display: flex;
+  /* enables flex content for its children */
   flex-direction: column;
 }
 
@@ -242,12 +248,15 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 .column {
-  height: 100%;  /* allows both columns to span the full height of the browser window */
+  height: 100%;
+  /* allows both columns to span the full height of the browser window */
   display: flex;
-  flex-direction: column;  /* stacks the left and right headers above the bottom content */
+  flex-direction: column;
+  /* stacks the left and right headers above the bottom content */
   flex-wrap: nowrap;
   margin: 8px;
 }
+
 .column-content {
   display: flex;
   flex-flow: column nowrap;
@@ -256,7 +265,8 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 #main-column {
-  /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */ /* [OCDkirby: so that was a fucking lie.] */
+  /* flex-shrink: 0;  /* makes sure that content is not cut off in a smaller browser window */
+  /* [OCDkirby: so that was a fucking lie.] */
   flex-shrink: 1;
   flex-grow: 2;
   align-self: center;
@@ -282,7 +292,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 .top-right {
   flex-shrink: 0;
   display: flex;
-    
+
 }
 
 .joke-wrapper {
