@@ -38,7 +38,7 @@ const lightMenu: Partial<MenuThemeVars> = {
 //   colorStartInfo: '#4C3E9C',
 // }
 const gradientTextOverrides: Partial<GradientTextThemeVars> = {
-  rotate: '2deg',
+  rotate: '188deg',
   colorEndInfo: '#150fff',
   colorStartInfo: '#9600ff',
 }
@@ -292,7 +292,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 .top-right {
   flex-shrink: 0;
   display: flex;
-
+  padding-top: 15%;
 }
 
 .joke-wrapper {
