@@ -12,7 +12,7 @@ see [CONTRIBUTING.md](CONTRIBUTING.md)
 ## Project Setup
 
 ```sh
-git clone https://github.com/OCDkirby/rpcsx-site
+git clone https://github.com/RPCSX/rpcsx-site
 cd rpcsx-site
 npm install
 ```
