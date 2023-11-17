@@ -72,7 +72,15 @@ const cardOverrides: Partial<CardThemeVars> = {
 
 const lightCard: Partial<CardThemeVars> = {
   ...cardOverrides,
-  borderColor: '#1D5DEC'
+  borderColor: '#1D5DEC',
+  color: '#f9f9f8'
+}
+
+const buttonOverrides: Partial<ButtonThemeVars> = {
+  textColorHover: '#3633fa',
+  borderHover: '1px solid #3633fa',
+  textColorFocus: '#a2a1ff',
+  borderFocus: '1px solid #a2a1ff'
 }
 
 const lightThemeOverrides: GlobalThemeOverrides = {
@@ -86,6 +94,7 @@ const lightThemeOverrides: GlobalThemeOverrides = {
   Card: lightCard,
   GradientText: gradientTextOverrides,
   Menu: lightMenu,
+  Button: buttonOverrides,
   // ...
 };
 
@@ -99,49 +108,52 @@ const darkThemeOverrides: GlobalThemeOverrides = {
   Card: cardOverrides,
   GradientText: gradientTextOverrides,
   Menu: darkMenu,
+  Button: buttonOverrides,
   // ...
 };
 </script>
 
 <template>
   <n-config-provider :theme="theme" :themeOverrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
-    <n-layout :class="`layout-${theme === null ? 'light' : 'dark'}`">
-      <div class="wrapper">
-        <div class="top-portion-wrapper">
-          <Suspense>
-            <TopBarMenu :themex="theme" :toggle="toggleTheme" />
-          </Suspense>
-          <div class="columns">
-            <div id="main-column" class="column">
-              <div class="top-main">
-                <Suspense>
-                  <Hook :themex="theme" />
-                </Suspense>
-              </div>
+    <n-theme-editor>
+      <n-layout :class="`layout-${theme === null ? 'light' : 'dark'}`">
+        <div class="wrapper">
+          <div class="top-portion-wrapper">
+            <Suspense>
+              <TopBarMenu :themex="theme" :toggle="toggleTheme" />
+            </Suspense>
+            <div class="columns">
+              <div id="main-column" class="column">
+                <div class="top-main">
+                  <Suspense>
+                    <Hook :themex="theme" />
+                  </Suspense>
+                </div>
 
-              <!-- todo put something here if necessary -->
-              <div class="column-content" />
-            </div>
-            <div id="right-column" class="column">
-              <div class="top-right">
-                <MainCard :themex="theme" />
+                <!-- todo put something here if necessary -->
+                <div class="column-content" />
               </div>
-              <div class="column-content">
-                <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
+              <div id="right-column" class="column">
+                <div class="top-right">
+                  <MainCard :themex="theme" />
+                </div>
+                <div class="column-content">
+                  <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
+                </div>
               </div>
             </div>
           </div>
+          <n-divider />
+          <div class="bottom-portion-wrapper">
+            <n-carousel autoplay direction="horizontal" dot-type="line">
+              <img class="carousel-img" src="/assets/we-are-doomed.png">
+              <img class="carousel-img" src="/assets/sample-1.png">
+              <img class="carousel-img" src="/assets/steamydeck.jpg">
+            </n-carousel>
+          </div>
         </div>
-        <n-divider />
-        <div class="bottom-portion-wrapper">
-          <n-carousel autoplay direction="horizontal" dot-type="line">
-            <img class="carousel-img" src="/assets/we-are-doomed.png">
-            <img class="carousel-img" src="/assets/sample-1.png">
-            <img class="carousel-img" src="/assets/steamydeck.jpg">
-          </n-carousel>
-        </div>
-      </div>
-    </n-layout>
+      </n-layout>
+    </n-theme-editor>
   </n-config-provider>
 </template>
 
