@@ -115,45 +115,42 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 
 <template>
   <n-config-provider :theme="theme" :themeOverrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
-    <n-theme-editor>
-      <n-layout :class="`layout-${theme === null ? 'light' : 'dark'}`">
-        <div class="wrapper">
-          <div class="top-portion-wrapper">
-            <Suspense>
-              <TopBarMenu :themex="theme" :toggle="toggleTheme" />
-            </Suspense>
-            <div class="columns">
-              <div id="main-column" class="column">
-                <div class="top-main">
-                  <Suspense>
-                    <Hook :themex="theme" />
-                  </Suspense>
-                </div>
+    <div class="wrapper">
+      <div class="top-portion-wrapper">
+        <Suspense>
+          <TopBarMenu :themex="theme" :toggle="toggleTheme" />
+        </Suspense>
+        <div class="columns">
+          <div id="main-column" class="column">
+            <div class="top-main">
+              <Suspense>
+                <Hook :themex="theme" />
+              </Suspense>
+            </div>
 
-                <!-- todo put something here if necessary -->
-                <div class="column-content" />
-              </div>
-              <div id="right-column" class="column">
-                <div class="top-right">
-                  <MainCard :themex="theme" />
-                </div>
-                <div class="column-content">
-                  <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
-                </div>
-              </div>
+            <!-- todo put something here if necessary -->
+            <div class="column-content" />
+          </div>
+          <div id="right-column" class="column">
+            <div class="top-right">
+              <MainCard :themex="theme" />
+            </div>
+            <div class="column-content">
+              <!-- <iframe src="https://discord.com/widget?id=252023769500090368&theme=dark" width="250" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->
             </div>
           </div>
-          <n-divider />
-          <div class="bottom-portion-wrapper">
-            <n-carousel autoplay direction="horizontal" dot-type="line">
-              <img class="carousel-img" src="/assets/we-are-doomed.png">
-              <img class="carousel-img" src="/assets/sample-1.png">
-              <img class="carousel-img" src="/assets/steamydeck.jpg">
-            </n-carousel>
-          </div>
         </div>
-      </n-layout>
-    </n-theme-editor>
+      </div>
+      <n-divider />
+      <div class="bottom-portion-wrapper">
+        <n-carousel autoplay direction="horizontal" dot-type="line">
+          <img class="carousel-img" src="/assets/we-are-doomed.png">
+          <img class="carousel-img" src="/assets/sample-1.png">
+          <img class="carousel-img" src="/assets/steamydeck.jpg">
+        </n-carousel>
+      </div>
+    </div>
+    </n-layout>
   </n-config-provider>
 </template>
 
