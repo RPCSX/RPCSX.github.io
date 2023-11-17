@@ -40,7 +40,7 @@ var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
 
 @font-face {
   font-family: "Rave";
-  src: url('./fonts/The_Rave_Is_In_Your_Pants.otf');
+  src: url('/fonts/The_Rave_Is_In_Your_Pants.otf');
 }
 </style>
 
