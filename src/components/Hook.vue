@@ -30,11 +30,11 @@ var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
 }
 
 .n-gradient-text {
-  font-size: 32pt;
+  font-size: 2.5em;
 }
 
 .n-text {
-  font-size: 16pt;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
@@ -47,7 +47,7 @@ var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
 <template>
   <div class="hook">
     <div class="hook-item">
-      <n-gradient-text type="info" size="72pt" style="font-family: 'Rave';">RPCSX</n-gradient-text>
+      <n-gradient-text type="info" size="5em" style="font-family: 'Rave';">RPCSX</n-gradient-text>
       <n-gradient-text type="info">{{ getTime() }}</n-gradient-text>
       <n-text>of development.</n-text>
     </div>
