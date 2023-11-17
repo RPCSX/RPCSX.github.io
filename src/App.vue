@@ -196,8 +196,8 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 .n-carousel {
-  width: 800px;
-  height: 450px;
+  width: 80%;
+  height: 80%;
   align-self: center;
 }
 
@@ -206,8 +206,8 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 }
 
 .carousel-img {
-  width: 800px;
-  height: 450px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -293,21 +293,6 @@ const darkThemeOverrides: GlobalThemeOverrides = {
   flex-shrink: 0;
   display: flex;
   padding-top: 15%;
-}
-
-.joke-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  flex-shrink: 1;
-  gap: 8px;
-  align-items: flex-start;
-}
-
-.joke-footnote {
-  align-self: flex-end;
-  font-size: 8pt;
-  word-wrap: break-word;
 }
 </style>
 
