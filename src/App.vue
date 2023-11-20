@@ -3,13 +3,13 @@ import 'vfonts/FiraSans.css';
 
 import { defineComponent, ref } from 'vue';
 
-import { PedestrianFamily, ToolBox, GameConsole, Linux } from '@vicons/carbon';
 import { GlobalThemeOverrides, darkTheme, NLayout, NCarousel } from 'naive-ui'
 import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface';
 import { CardThemeVars } from 'naive-ui/es/card/styles';
 import { TypographyThemeVars } from 'naive-ui/es/typography/styles';
 import { GradientTextThemeVars } from 'naive-ui/es/gradient-text/styles';
 import { MenuThemeVars } from 'naive-ui/es/menu/styles';
+import { ButtonThemeVars } from 'naive-ui/es/button/styles';
 
 const menuOverrides: Partial<MenuThemeVars> = {
   fontSize: '12pt',
