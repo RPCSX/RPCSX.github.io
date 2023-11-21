@@ -150,6 +150,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
         <n-divider />
         <div class="bottom-portion-wrapper">
           <n-carousel autoplay direction="horizontal" dot-type="line">
+            <img class="carousel-img" src="/assets/sonicmania.png">
             <img class="carousel-img" src="/assets/we-are-doomed.png">
             <img class="carousel-img" src="/assets/sample-1.png">
             <img class="carousel-img" src="/assets/steamydeck.jpg">
