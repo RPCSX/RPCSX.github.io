@@ -3,13 +3,14 @@ import 'vfonts/FiraSans.css';
 
 import { defineComponent, ref } from 'vue';
 
-import { GlobalThemeOverrides, darkTheme, NLayout, NCarousel } from 'naive-ui'
+import { GlobalThemeOverrides, darkTheme, NLayout, NCarousel, NText, NAlert } from 'naive-ui'
 import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface';
 import { CardThemeVars } from 'naive-ui/es/card/styles';
 import { TypographyThemeVars } from 'naive-ui/es/typography/styles';
 import { GradientTextThemeVars } from 'naive-ui/es/gradient-text/styles';
 import { MenuThemeVars } from 'naive-ui/es/menu/styles';
 import { ButtonThemeVars } from 'naive-ui/es/button/styles';
+import { AlertThemeVars } from 'naive-ui/es/alert/styles';
 
 const menuOverrides: Partial<MenuThemeVars> = {
   fontSize: '12pt',
@@ -121,6 +122,10 @@ const darkThemeOverrides: GlobalThemeOverrides = {
           <Suspense>
             <TopBarMenu :themex="theme" :toggle="toggleTheme" />
           </Suspense>
+          <n-alert title="Important" type="warning" closable>
+            <n-text class="alert-text">This is the only official RPCSX site. others such as rpcsx.com are not affiliated
+              with RPCSX.</n-text>
+          </n-alert>
           <div class="columns">
             <div id="main-column" class="column">
               <div class="top-main">
@@ -149,6 +154,8 @@ const darkThemeOverrides: GlobalThemeOverrides = {
             <img class="carousel-img" src="/assets/sample-1.png">
             <img class="carousel-img" src="/assets/steamydeck.jpg">
           </n-carousel>
+          <n-divider />
+          <n-text class="copyright-text">© {{ new Date().getFullYear() }} - RPCSX (the real one)</n-text>
         </div>
       </div>
     </n-layout>
@@ -170,6 +177,23 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 
 .n-divider {
   margin: 0px 16px;
+}
+
+.copyright-text {
+  display: flex;
+  align-self: flex-start;
+  padding-left: 10%;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.n-alert {
+  margin: 8px 10%
+}
+
+.alert-text {
+  font-weight: bold;
+  font-size: 12pt;
 }
 
 .carousel-img {
@@ -201,6 +225,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 
 .bottom-portion-wrapper {
   margin-top: 30px;
+  gap: 16px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
