@@ -150,10 +150,10 @@ const darkThemeOverrides: GlobalThemeOverrides = {
         <n-divider />
         <div class="bottom-portion-wrapper">
           <n-carousel autoplay direction="horizontal" dot-type="line">
-            <img class="carousel-img" src="/assets/sonicmania.png">
-            <img class="carousel-img" src="/assets/we-are-doomed.png">
-            <img class="carousel-img" src="/assets/sample-1.png">
-            <img class="carousel-img" src="/assets/steamydeck.jpg">
+            <img class="carousel-img" src="/assets/sonicmania.png" alt="Sonic Mania running on RPCSX">
+            <img class="carousel-img" src="/assets/we-are-doomed.png" alt="We Are Doomed running on RPCSX">
+            <img class="carousel-img" src="/assets/sample-1.png" alt="Development sample running on RPCSX">
+            <img class="carousel-img" src="/assets/steamydeck.jpg" alt="RPCSX crashing on Steam Deck">
           </n-carousel>
           <n-divider />
           <n-text class="copyright-text">© {{ new Date().getFullYear() }} - RPCSX (the real one)</n-text>
