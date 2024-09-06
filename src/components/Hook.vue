@@ -38,6 +38,11 @@ var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
   font-weight: bold;
 }
 
+#emu-name {
+  font-family: 'Rave';
+  font-size: calc(5vw + 5vh);
+}
+
 @font-face {
   font-family: "Rave";
   src: url('/fonts/The_Rave_Is_In_Your_Pants.otf');
@@ -47,7 +52,7 @@ var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
 <template>
   <div class="hook">
     <div class="hook-item">
-      <n-gradient-text type="info" size="5em" style="font-family: 'Rave';">RPCSX</n-gradient-text>
+      <n-gradient-text type="info" id="emu-name">RPCSX</n-gradient-text>
       <n-gradient-text type="info">{{ getTime() }}</n-gradient-text>
       <n-text>of development.</n-text>
     </div>
