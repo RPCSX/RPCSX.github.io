@@ -91,30 +91,38 @@ const menuOptions: MenuOption[] = [
 
 <template>
   <div class="bar-wrapper">
-    <n-button quaternary tag="a" href="https://rpcsx.github.io/rpcsx-site/">
-      <img alt="RPCSX logo" class="logo" src="/assets/logo-dark.png" width="32" height="32" />
+    <n-button
+      quaternary
+      tag="a"
+      href="https://rpcsx.github.io/rpcsx-site/"
+    >
+      <img
+        alt="RPCSX logo"
+        class="logo"
+        src="/assets/logo-dark.png"
+        width="32"
+        height="32"
+      >
     </n-button>
-    <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
-    <n-button circle @click="toggle" class="dark-mode-button">
+    <n-menu
+      v-model:value="activeKey"
+      mode="horizontal"
+      :options="menuOptions"
+    />
+    <n-button
+      circle
+      class="dark-mode-button"
+      @click="toggle"
+    >
       <template #icon>
         <n-icon>
           <MoonIcon v-if="themex == null" />
           <SunIcon v-else />
         </n-icon>
       </template>
-
     </n-button>
   </div>
 </template>
-
-<style scoped>
-.bar-wrapper {
-  display: inline-block;
-  flex-flow: row nowrap;
-  text-align: center;
-  margin: 8px;
-}
-</style>
 
 <script lang="ts">
 export default defineComponent({
@@ -125,3 +133,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.bar-wrapper {
+  display: inline-block;
+  flex-flow: row nowrap;
+  text-align: center;
+  margin: 8px;
+}
+</style>

@@ -16,6 +16,35 @@ const headers = response.headers
 var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
 </script>
 
+<template>
+  <div class="hook">
+    <div class="hook-item">
+      <n-gradient-text
+        id="emu-name"
+        type="info"
+      >
+        RPCSX
+      </n-gradient-text>
+      <n-gradient-text type="info">
+        {{ getTime() }}
+      </n-gradient-text>
+      <n-text>of development.</n-text>
+    </div>
+    <div class="hook-item">
+      <n-gradient-text type="info">
+        {{ contributors }}
+      </n-gradient-text>
+      <n-text>experienced contributors.</n-text>
+    </div>
+    <div class="hook-item">
+      <n-gradient-text type="info">
+        0
+      </n-gradient-text>
+      <n-text>days since someone asked for Bloodborne.</n-text>
+    </div>
+  </div>
+</template>
+
 <style scoped>
 .hook {
   display: flex;
@@ -48,21 +77,3 @@ var contributors = headers.get('link')?.match(/&page=(\d+)>; rel="last"/)[1]
   src: url('/fonts/The_Rave_Is_In_Your_Pants.otf');
 }
 </style>
-
-<template>
-  <div class="hook">
-    <div class="hook-item">
-      <n-gradient-text type="info" id="emu-name">RPCSX</n-gradient-text>
-      <n-gradient-text type="info">{{ getTime() }}</n-gradient-text>
-      <n-text>of development.</n-text>
-    </div>
-    <div class="hook-item">
-      <n-gradient-text type="info">{{ contributors }}</n-gradient-text>
-      <n-text>experienced contributors.</n-text>
-    </div>
-    <div class="hook-item">
-      <n-gradient-text type="info">0</n-gradient-text>
-      <n-text>days since someone asked for Bloodborne.</n-text>
-    </div>
-  </div>
-</template>

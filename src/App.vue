@@ -115,19 +115,34 @@ const darkThemeOverrides: GlobalThemeOverrides = {
 </script>
 
 <template>
-  <n-config-provider :theme="theme" :themeOverrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
+  <n-config-provider
+    :theme="theme"
+    :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides"
+  >
     <n-layout>
       <div class="wrapper">
         <div class="top-portion-wrapper">
           <Suspense>
-            <TopBarMenu :themex="theme" :toggle="toggleTheme" />
+            <TopBarMenu
+              :themex="theme"
+              :toggle="toggleTheme"
+            />
           </Suspense>
-          <n-alert title="Important" type="warning" closable>
-            <n-text class="alert-text">This is the only official RPCSX site. others such as rpcsx.com are not affiliated
-              with RPCSX.</n-text>
+          <n-alert
+            title="Important"
+            type="warning"
+            closable
+          >
+            <n-text class="alert-text">
+              This is the only official RPCSX site. others such as rpcsx.com are not affiliated
+              with RPCSX.
+            </n-text>
           </n-alert>
           <div class="columns">
-            <div id="main-column" class="column">
+            <div
+              id="main-column"
+              class="column"
+            >
               <div class="top-main">
                 <Suspense>
                   <Hook :themex="theme" />
@@ -137,7 +152,10 @@ const darkThemeOverrides: GlobalThemeOverrides = {
               <!-- todo put something here if necessary -->
               <div class="column-content" />
             </div>
-            <div id="right-column" class="column">
+            <div
+              id="right-column"
+              class="column"
+            >
               <div class="top-right">
                 <MainCard :themex="theme" />
               </div>
@@ -149,19 +167,54 @@ const darkThemeOverrides: GlobalThemeOverrides = {
         </div>
         <n-divider />
         <div class="bottom-portion-wrapper">
-          <n-carousel autoplay direction="horizontal" dot-type="line">
-            <img class="carousel-img" src="/assets/sonicmania.png" alt="Sonic Mania running on RPCSX">
-            <img class="carousel-img" src="/assets/we-are-doomed.png" alt="We Are Doomed running on RPCSX">
-            <img class="carousel-img" src="/assets/sample-1.png" alt="Development sample running on RPCSX">
-            <img class="carousel-img" src="/assets/steamydeck.jpg" alt="RPCSX crashing on Steam Deck">
+          <n-carousel
+            autoplay
+            direction="horizontal"
+            dot-type="line"
+          >
+            <img
+              class="carousel-img"
+              src="/assets/sonicmania.png"
+              alt="Sonic Mania running on RPCSX"
+            >
+            <img
+              class="carousel-img"
+              src="/assets/we-are-doomed.png"
+              alt="We Are Doomed running on RPCSX"
+            >
+            <img
+              class="carousel-img"
+              src="/assets/sample-1.png"
+              alt="Development sample running on RPCSX"
+            >
+            <img
+              class="carousel-img"
+              src="/assets/steamydeck.jpg"
+              alt="RPCSX crashing on Steam Deck"
+            >
           </n-carousel>
           <n-divider />
-          <n-text class="copyright-text">© {{ new Date().getFullYear() }} - RPCSX (the real one)</n-text>
+          <n-text class="copyright-text">
+            © {{ new Date().getFullYear() }} - RPCSX (the real one)
+          </n-text>
         </div>
       </div>
     </n-layout>
   </n-config-provider>
 </template>
+
+<script lang="ts">
+var theme = ref<BuiltInGlobalTheme | null>(darkTheme);
+
+export default defineComponent({
+  props: ['theme'],
+  methods: {
+    toggleTheme() {
+      theme.value = theme.value == null ? darkTheme : null;
+    }
+  }
+})
+</script>
 
 <style scoped>
 .n-layout {
@@ -290,16 +343,3 @@ const darkThemeOverrides: GlobalThemeOverrides = {
   padding-top: 15%;
 }
 </style>
-
-<script lang="ts">
-var theme = ref<BuiltInGlobalTheme | null>(darkTheme);
-
-export default defineComponent({
-  methods: {
-    toggleTheme() {
-      theme.value = theme.value == null ? darkTheme : null;
-    }
-  },
-  props: ['theme']
-})
-</script>

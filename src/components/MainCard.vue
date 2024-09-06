@@ -12,18 +12,24 @@ const cardOverrides : Partial<CardThemeVars> = {
 
 </script>
 
+<template>
+  <n-card
+    hoverable
+    size="small"
+    :theme-overrides="cardOverrides"
+  >
+    <template #header>
+      RPCSX is your PlayStation™ 4 emulator.
+    </template>
+    <div class="body-text">
+      Use only with lawfully obtained archival copies of PS4 games you physically own. <strong>RPCSX is non-commercial and is not affiliated with Sony or PlayStation.</strong>
+    </div>
+  </n-card>
+</template>
+
 <style scoped>
   .n-card {
     max-width: 600px;
     line-height: 2.8em;
   }
 </style>
-
-<template>
-  <n-card hoverable size="small" :theme-overrides="cardOverrides">
-      <template #header>
-        RPCSX is your PlayStation™ 4 emulator.
-      </template>
-      <div class="body-text">Use only with lawfully obtained archival copies of PS4 games you physically own. <strong>RPCSX is non-commercial and is not affiliated with Sony or PlayStation.</strong></div>
-  </n-card>
-</template>

@@ -1,21 +1,27 @@
 <template>
-    <n-card hoverable>
-        <div class="card-wrapper">
-            <div class="icon-wrapper">
-                <n-icon size="35">
-                    <slot name="card-icon" class="card-icon"/>
-                </n-icon>
-            </div>
-            <div class="content-wrapper">
-                <n-h3 class="card-header">
-                    <slot name="card-title" />
-                </n-h3>
-                <n-text class="body-text" id="card-body">
-                    <slot />
-                </n-text>
-            </div>
-        </div>
-    </n-card>
+  <n-card hoverable>
+    <div class="card-wrapper">
+      <div class="icon-wrapper">
+        <n-icon size="35">
+          <slot
+            name="card-icon"
+            class="card-icon"
+          />
+        </n-icon>
+      </div>
+      <div class="content-wrapper">
+        <n-h3 class="card-header">
+          <slot name="card-title" />
+        </n-h3>
+        <n-text
+          id="card-body"
+          class="body-text"
+        >
+          <slot />
+        </n-text>
+      </div>
+    </div>
+  </n-card>
 </template>
 
 <style scoped>
