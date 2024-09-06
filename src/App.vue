@@ -179,6 +179,11 @@ const darkThemeOverrides: GlobalThemeOverrides = {
             >
             <img
               class="carousel-img"
+              src="/assets/firmware.png"
+              alt="PS4 firmware running on RPCSX"
+            >
+            <img
+              class="carousel-img"
               src="/assets/we-are-doomed.png"
               alt="We Are Doomed running on RPCSX"
             >
