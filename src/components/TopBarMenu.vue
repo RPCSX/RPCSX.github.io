@@ -94,7 +94,7 @@ const menuOptions: MenuOption[] = [
     <n-button
       quaternary
       tag="a"
-      href="https://rpcsx.github.io/rpcsx-site/"
+      href="/"
     >
       <img
         alt="RPCSX logo"
